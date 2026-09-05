@@ -1,0 +1,12 @@
+.env
+__pycache__/
+*.pyc
+uploads/*
+!uploads/.gitkeep
+generated/charts/*
+generated/reports/*
+!generated/charts/.gitkeep
+!generated/reports/.gitkeep
+.venv/
+venv/
+.pytest_cache/

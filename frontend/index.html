@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Multi-Agent AI Data Analyst</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>" />
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <span class="brand-icon">🧠</span>
+      <div>
+        <h1>Multi-Agent AI Data Analyst</h1>
+        <p>Six specialist agents work together on your dataset.</p>
+      </div>
+    </div>
+    <div class="health">
+      <span class="pill" id="health-pill">checking…</span>
+    </div>
+  </header>
+
+  <!-- SCREEN 1 : UPLOAD -->
+  <main id="screen-upload" class="screen">
+    <section class="hero">
+      <h2>Upload your dataset and let a team of AI analysts investigate it.</h2>
+      <p>
+        The <strong>Manager</strong> plans the work, the <strong>Cleaner</strong> inspects
+        data quality, the <strong>Data Analyst</strong> finds patterns, the
+        <strong>Visualization Agent</strong> builds charts, a critical
+        <strong>Reviewer</strong> verifies everything, and the <strong>Report Agent</strong>
+        writes your final business report.
+      </p>
+    </section>
+
+    <section class="upload-panel">
+      <div id="drop-zone" class="drop-zone">
+        <div class="drop-icon">📊</div>
+        <p class="drop-title">Drag &amp; drop a CSV file here</p>
+        <p class="drop-sub">or <label class="browse" for="file-input">browse</label> your files</p>
+        <input type="file" id="file-input" accept=".csv" hidden />
+        <div id="file-info" class="file-info hidden"></div>
+      </div>
+
+      <label class="field-label" for="question">Business question (optional)</label>
+      <textarea
+        id="question"
+        rows="3"
+        placeholder="e.g. Analyze our sales performance and find the regions and products that need attention."
+      ></textarea>
+
+      <button id="start-btn" class="cta" disabled>
+        <span>▶</span> Start Analysis
+      </button>
+      <p class="hint">Max 200k rows · 200 columns · 50 MB · CSV only</p>
+    </section>
+  </main>
+
+  <!-- SCREEN 2 : LIVE CONTROL CENTER -->
+  <main id="screen-live" class="screen hidden">
+    <section class="mission">
+      <div class="mission-meta">
+        <h2 id="live-title">Analyzing…</h2>
+        <p id="live-question" class="muted"></p>
+      </div>
+      <div class="overall">
+        <span class="overall-label">Status</span>
+        <span id="overall-status" class="status-chip running">Running</span>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="pipeline-col">
+        <div class="agent-grid" id="agent-grid"><!-- agent cards injected --></div>
+        <section class="activity-panel">
+          <h3>Live Activity</h3>
+          <ul id="activity" class="activity"></ul>
+        </section>
+      </section>
+
+      <section class="detail-col">
+        <div class="agent-detail" id="agent-detail">
+          <h4>Focus</h4>
+          <p class="muted">Agents will report their current task here.</p>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- SCREEN 3 : RESULTS -->
+  <main id="screen-results" class="screen hidden">
+    <section class="results-header">
+      <div>
+        <h2>Analysis Complete</h2>
+        <p class="muted" id="results-question"></p>
+      </div>
+      <div class="results-actions">
+        <button id="download-report-btn" class="btn secondary">⬇ Markdown Report</button>
+        <button id="download-json-btn" class="btn secondary">⬇ Analysis JSON</button>
+        <button id="new-analysis-btn" class="btn">↺ New Analysis</button>
+      </div>
+    </section>
+
+    <div id="results-body"><!-- results injected --></div>
+  </main>
+
+  <div id="error-modal" class="modal hidden">
+    <div class="modal-box">
+      <h3>⚠️ Something went wrong</h3>
+      <p id="error-text"></p>
+      <button id="error-close" class="btn">Close</button>
+    </div>
+  </div>
+
+  <noscript>JavaScript is required to run this application.</noscript>
+  <script src="app.js"></script>
+</body>
+</html>
